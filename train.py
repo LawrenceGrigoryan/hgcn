@@ -54,15 +54,12 @@ def train(args):
         Model = NCModel
         args.n_classes = int(data['labels'].max() + 1)
         logging.info(f'Num classes: {args.n_classes}')
-    else:
+    elif args.task == 'lp':
         args.nb_false_edges = len(data['train_edges_false'])
         args.nb_edges = len(data['train_edges'])
-        if args.task == 'lp':
-            Model = LPModel
-        else:
-            Model = RECModel
-            # No validation for reconstruction task
-            args.eval_freq = args.epochs + 1
+        Model = LPModel
+    else:
+        raise ValueError("--task argument can be either `nc` or `lp`")
 
     if not args.lr_reduce_freq:
         args.lr_reduce_freq = args.epochs
