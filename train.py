@@ -11,7 +11,10 @@ import time
 import numpy as np
 import optimizers
 import torch
-from config import parser
+from config import (
+    parser,
+    DATAPATH
+)
 from models.base_models import NCModel, LPModel
 from utils.data_utils import load_data
 from utils.train_utils import get_dir_name, format_metrics
@@ -45,7 +48,7 @@ def train(args):
     logging.info("Using seed {}.".format(args.seed))
 
     # Load data
-    data = load_data(args, os.path.join(os.environ['DATAPATH'], args.dataset))
+    data = load_data(args, os.path.join(DATAPATH, args.dataset))
     args.n_nodes, args.feat_dim = data['features'].shape
     if args.task == 'nc':
         Model = NCModel
