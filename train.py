@@ -13,7 +13,8 @@ import optimizers
 import torch
 from config import (
     parser,
-    DATAPATH
+    DATAPATH,
+    LOG_DIR
 )
 from models.base_models import NCModel, LPModel
 from utils.data_utils import load_data
@@ -34,7 +35,7 @@ def train(args):
         if not args.save_dir:
             dt = datetime.datetime.now()
             date = f"{dt.year}_{dt.month}_{dt.day}"
-            models_dir = os.path.join(os.environ['LOG_DIR'], args.task, date)
+            models_dir = os.path.join(LOG_DIR, args.task, date)
             save_dir = get_dir_name(models_dir)
         else:
             save_dir = args.save_dir

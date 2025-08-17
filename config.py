@@ -5,7 +5,7 @@ from utils.train_utils import add_flags_from_config
 
 HGCN_HOME = Path(__file__).parents[0].resolve()
 LOG_DIR = HGCN_HOME / "logs"
-DATAPATH= HGCN_HOME / "data"
+DATAPATH = HGCN_HOME / "data"
 
 config_args = {
     'training_config': {
